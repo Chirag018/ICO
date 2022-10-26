@@ -137,11 +137,12 @@ export default function Home() {
       const signer = await getProviderOrSigner(true);
       const address = await signer.getAddress();
       if (address.toLowerCase() === _owner.toLowerCase()) {
+        console.log(address);
         setIsOwner(true);
       }
     }
     catch (e) {
-      console.error(e);
+      console.error(e.message);
     }
   }
 
@@ -208,8 +209,9 @@ export default function Home() {
         </div>
       );
     }
-
+    console.log(isOwner);
     if (walletConnected && isOwner) {
+      console.log('in');
       return (
         <div>
           <button className={styles.button1} onClick={withdrawCoins}>
@@ -218,7 +220,9 @@ export default function Home() {
         </div>
       );
     }
+    console.log('not in 1');
     if (tokensToBeClaimed > 0) {
+      console.log('in 1');
       return (
         <div>
           <div className={styles.description}>{tokensToBeClaimed * 10} Tokens can be claimed!</div>
@@ -274,7 +278,7 @@ export default function Home() {
       </div>
 
       <footer className={styles.footer}>
-        Made with &#10084; by Crypto Devs
+        Made with &#10084; by CM
       </footer>
     </div>
   )
